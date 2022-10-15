@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
-using namespace std;
 struct UF{
-    vector<int> par, sz;
+    std :: vector<int> par, sz;
     UF() {}
     UF(int n):par(n), sz(n, 1){
         for(int i=0; i<n; i++) par[i]=i;
@@ -13,7 +12,7 @@ struct UF{
     void unite(int x, int y){
         x=find(x); y=find(y);
         if(x==y) return;
-        if(sz[x]>sz[y]) swap(x, y);
+        if(sz[x]>sz[y]) std :: swap(x, y);
         par[x]=y;
         sz[y]+=sz[x];
     }

@@ -1,16 +1,15 @@
 #include<bits/stdc++.h>
-using namespace std;
 struct LCA{
     int n;
     int root;
-    vector<vector<int>> g;
-    vector<vector<int>> up; 
-    vector<int> depth;  
+    std :: vector<std :: vector<int>> g;
+    std :: vector<std :: vector<int>> up; 
+    std :: vector<int> depth;  
     int LOG;
     LCA(){
 
     }
-    LCA(vector<vector<int>> &adj,int r = 0){ // 0 indexed based LCA 
+    LCA(std :: vector<std :: vector<int>> &adj,int r = 0){ // 0 indexed based LCA 
         g = adj; 
         n = adj.size();
         root = r;
@@ -18,7 +17,7 @@ struct LCA{
     }
     void preprocess(){
         LOG = 17; // change log if required(17 if 1e5 20 if 1e6)
-        up.assign(n,vector<int> (LOG));
+        up.assign(n,std :: vector<int> (LOG));
         depth.assign(n,0);
         for(int i = 0;i < LOG;++i)up[root][i] = root;
         dfs(root,-1);
@@ -36,6 +35,9 @@ struct LCA{
             for(int j = 1;j < LOG;++j){
                 up[x][j] = up[up[x][j - 1]][j - 1]; // powers of 2 2 ^ 3 = 2 ^ 2 + 2 ^ 2
             }
+            /*
+                add code if required
+            */
             dfs(x,u);
         }
     }
@@ -48,7 +50,7 @@ struct LCA{
     int lca(int a,int b){
         // d b > d a
         if(depth[a] > depth[b]){
-            swap(a,b);
+            std :: swap(a,b);
         }
         // make them both at same depth
         int k = depth[b] - depth[a];

@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-using namespace std;
 int index() {
     static int id = -1;
     id += 1;
@@ -14,12 +13,12 @@ struct FlowEdge {
 
 struct Dinic {
     const long long flow_inf = 1e18;
-    vector<FlowEdge> edges;
-    vector<vector<int>> adj;
+    std :: vector<FlowEdge> edges;
+    std :: vector<std :: vector<int>> adj;
     int n, m = 0;
     int s, t; // s - > source , t - > sink
-    vector<int> level, ptr;
-    queue<int> q;
+    std :: vector<int> level, ptr;
+    std :: queue<int> q;
 
     Dinic(int n, int s, int t) : n(n), s(s), t(t) {
         adj.resize(n);
@@ -61,7 +60,7 @@ struct Dinic {
             int u = edges[id].u;
             if (level[v] + 1 != level[u] || edges[id].cap - edges[id].flow < 1)
                 continue;
-            long long tr = dfs(u, min(pushed, edges[id].cap - edges[id].flow));
+            long long tr = dfs(u, std :: min(pushed, edges[id].cap - edges[id].flow));
             if (tr == 0)
                 continue;
             edges[id].flow += tr;

@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
-using namespace std;
-vector<pair<long long,int>> pff(long long n){
-    vector<pair<long long,int>> fac;
+std :: vector<std :: pair<long long,int>> pff(long long n){
+    std :: vector<std :: pair<long long,int>> fac;
     long long cnt=0;
     while (n % 2 == 0)
     {

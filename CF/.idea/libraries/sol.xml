@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sol">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/contests/805/sol.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

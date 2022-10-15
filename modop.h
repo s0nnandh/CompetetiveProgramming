@@ -1,128 +1,91 @@
 #include<bits/stdc++.h>
-using namespace std;
-#define ll long long
-const ll mod  = 1e9 + 7;  // Check mod
-namespace modop {
-	ll madd(ll a, ll b) {
-	  return (a + b) % mod;
-	}
-	ll msub(ll a, ll b) {
-	  return (((a - b) % mod) + mod) % mod;
-	}
-	ll mmul(ll a, ll b) {
-	  return ((a % mod) * (b % mod)) % mod;
-	}
-	ll mpow(ll base, ll exp) {
-	  ll res = 1;
-	  while (exp) {
-		if (exp % 2 == 1){
-			res = (res * base) % mod;
-		}
-		exp >>= 1;
-		base = (base * base) % mod;
-	  }
-	  return res;
-	}
-	ll minv(ll base) {
-	  return mpow(base, mod - 2);
-	}
-	ll mdiv(ll a, ll b) {
-	  return mmul(a, minv(b));
-	}
-	
-	const ll FACTORIAL_SIZE = 1.1e6;
-	ll fact[FACTORIAL_SIZE], ifact[FACTORIAL_SIZE];
-	void gen_factorial(ll n) {
-		fact[0] = fact[1] = ifact[0] = ifact[1] = 1;
-		
-		for (ll i = 2; i <= n; i++) {
-			fact[i] = (i * fact[i - 1]) % mod;
-            //dbg(fact[i]);
-		}
-		ifact[n] = minv(fact[n]);
-		for (ll i = n - 1; i >= 2; i--) {
-			ifact[i] = ((i + 1) * ifact[i + 1]) % mod;
-		}
-	}
-	ll nck(ll n, ll k) {
-		ll den = (ifact[k] * ifact[n - k]) % mod;
-        //dbg(ifact[k],ifact[n - k]);
-		return (den * fact[n]) % mod;
-	}
-}
+template <int MOD_> 
+struct modnum {
+	static const int MOD = MOD_;   // Change to const if required
+	// assert(MOD > 0);
  
-using namespace modop;
+private:
+	using ll = long long;
+ 
+	int v;
+ 
+	static int minv(int a, int m) {
+		a %= m;
+		assert(a);
+		return a == 1 ? 1 : int(m - ll(minv(m, a)) * ll(m) / a);
+	}
+ 
+public:
+ 
+	modnum() : v(0) {}
+	modnum(ll v_) : v(int(v_ % MOD)) { if (v < 0) v += MOD; }
+	explicit operator int() const { return v; }
+	friend std::ostream& operator << (std::ostream& out, const modnum& n) { return out << int(n); }
+	friend std::istream& operator >> (std::istream& in, modnum& n) { ll v_; in >> v_; n = modnum(v_); return in; }
+ 
+	friend bool operator == (const modnum& a, const modnum& b) { return a.v == b.v; }
+	friend bool operator != (const modnum& a, const modnum& b) { return a.v != b.v; }
+    
+    int val(){
+        return v;
+    }
 
-
-// alternative 
-
-constexpr int P = 998244353;
-// assume -P <= x < 2P
-int norm(int x) {
-    if (x < 0) {
-        x += P;
-    }
-    if (x >= P) {
-        x -= P;
-    }
-    return x;
-}
-template<class T>
-T power(T a, int b) {
-    T res = 1;
-    for (; b; b /= 2, a *= a) {
-        if (b % 2) {
-            res *= a;
-        }
-    }
-    return res;
-}
-struct Z {
-    int x;
-    Z(int x = 0) : x(norm(x)) {}
-    int val() const {
-        return x;
-    }
-    Z operator-() const {
-        return Z(norm(P - x));
-    }
-    Z inv() const {
-        assert(x != 0);
-        return power(*this, P - 2);
-    }
-    Z &operator*=(const Z &rhs) {
-        x = (ll)x * rhs.x % P;
-        return *this;
-    }
-    Z &operator+=(const Z &rhs) {
-        x = norm(x + rhs.x);
-        return *this;
-    }
-    Z &operator-=(const Z &rhs) {
-        x = norm(x - rhs.x);
-        return *this;
-    }
-    Z &operator/=(const Z &rhs) {
-        return *this *= rhs.inv();
-    }
-    friend Z operator*(const Z &lhs, const Z &rhs) {
-        Z res = lhs;
-        res *= rhs;
-        return res;
-    }
-    friend Z operator+(const Z &lhs, const Z &rhs) {
-        Z res = lhs;
-        res += rhs;
-        return res;
-    }
-    friend Z operator-(const Z &lhs, const Z &rhs) {
-        Z res = lhs;
-        res -= rhs;
-        return res;
-    }
-    friend Z operator/(const Z &lhs, const Z &rhs) {
-        Z res = lhs;
-        res /= rhs;
-        return res;
-    }
+	modnum inv() const {
+		modnum res;
+		res.v = minv(v, MOD);
+		return res;
+	}
+	friend modnum inv(const modnum& m) { return m.inv(); }
+	modnum neg() const {
+		modnum res;
+		res.v = v ? MOD-v : 0;
+		return res;
+	}
+	friend modnum neg(const modnum& m) { return m.neg(); }
+ 
+	modnum operator- () const {
+		return neg();
+	}
+	modnum operator+ () const {
+		return modnum(*this);
+	}
+ 
+	modnum& operator ++ () {
+		v ++;
+		if (v == MOD) v = 0;
+		return *this;
+	}
+	modnum& operator -- () {
+		if (v == 0) v = MOD;
+		v --;
+		return *this;
+	}
+	modnum& operator += (const modnum& o) {
+		v += o.v;
+		if (v >= MOD) v -= MOD;
+		return *this;
+	}
+	modnum& operator -= (const modnum& o) {
+		v -= o.v;
+		if (v < 0) v += MOD;
+		return *this;
+	}
+	modnum& operator *= (const modnum& o) {
+		v = int(ll(v) * ll(o.v) % MOD);
+		return *this;
+	}
+	modnum& operator /= (const modnum& o) {
+		return *this *= o.inv();
+	}
+ 
+	friend modnum operator ++ (modnum& a, int) { modnum r = a; ++a; return r; }
+	friend modnum operator -- (modnum& a, int) { modnum r = a; --a; return r; }
+	friend modnum operator + (const modnum& a, const modnum& b) { return modnum(a) += b; }
+	friend modnum operator - (const modnum& a, const modnum& b) { return modnum(a) -= b; }
+	friend modnum operator * (const modnum& a, const modnum& b) { return modnum(a) *= b; }
+	friend modnum operator / (const modnum& a, const modnum& b) { return modnum(a) /= b; }
 };
+
+using ModInt = modnum<998244353>;
+
+// void __dbg(ModInt x) {std::cerr << x;} // uncomment this for dbg

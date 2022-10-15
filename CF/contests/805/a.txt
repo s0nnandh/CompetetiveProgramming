@@ -1,0 +1,64 @@
+Oracle 28ctc 16 base
+Google 31.9ctc 20.9 base
+Amazon 29ctc 14 base 3.5 joining bonus
+Goldman Sachs 31.5 CTC 21 base
+Wells Fargo(only Mtech) 30ctc 20 base
+Intel 19 CTC 15 base
+MTX 70ctc 35 base
+Flipkart DS 32ctc 25 base
+Flipkart SDE 26ctc 18base
+Spriklr 25 base
+Uber 35.5 CTC 19 base
+Dream 11 34ctc 20base
+VMware 24ctc 14.14base
+Nvidia 25.5 CTC 18.5base
+Texas instruments 24ctc 14.5base
+Samsung RIB Rnd 22ctc 15base
+Accenture japan 72ctc 47base
+Codenation 34ctc 24base
+TSMC 15ctc 15base
+SAP Labs india 28ctc 17base
+Mercedes 16base
+MX Player 18ctc 15base
+Quadeye 64ctc 35base guaranteed bonus 12lpa
+Alphonso 35ctc 30 base
+HiLabs 28ctc 20base
+Walmart 26ctc 15base
+Paypal 31ctc 13base
+Instabase 38ctc 27base
+Dynamic technology Singapore 42.25base
+Kubrick DS 15.5 base
+Kubrick SDE 15.5 base
+Icertis 23ctc 22.7base
+Amazon 29ctc 14base
+Payu payments 21ctc 17 base
+WorldQuant research 39.7ctc 39.7 base
+Udaan 20ctc 12base
+Cargil 23ctc 20 base
+Confluent 32.5ctc 23base
+Walmart 26ctc 15 base
+Morgan Stanley 26 CTC 19 base
+Vedantu 15 base
+Microsoft 28.1ctc 13.2 base
+Optiver Sydney 1.47crore CTC - no
+Mathworks 17.5 CTC 13.5base
+Games24x7 18.5ctc 16.5base
+Samsung semiconductor 24ctc 16base
+Qualcomm 35.75ctc 15base
+Graviton research 47ctc 30 base CPI>8.0
+Eightfold.ai 29.7ctc 19.7ctc
+Cohesity 63ctc 29.3base CPI>8.5
+Dgraph Labs 27ctc 23base - no
+Vimaan robotics 21ctc 20base
+Coupa software 19ctc 15base
+Atlassian 52ctc 13base
+Synopsis RnD 19.7ctc 13 base - no 
+Myntra 18ctc 16base - no 
+Yodlee 22ctc 20base - no
+Adobe 23ctc 13base - no
+TrexQuant 31ctc 26base - no
+Paypal 30ctc 13base
+Alphagrep 53ctc 29.5base
+Apt portfolio 38ctc 25base CPI>8 - no 
+Irage Capital 31ctc 16base CPI>8
+Bloomberg 16ctc 16base 

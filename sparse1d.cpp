@@ -1,10 +1,9 @@
 #include "bits/stdc++.h"
-using namespace std;
-template <typename T, class F = function<T(const T&, const T&)>>
+template <typename T, class F = std :: function<T(const T&, const T&)>>
 class SparseTable {
  public:
   int n;
-  vector<vector<T>> mat;
+  std :: vector<std :: vector<T>> mat;
   F func;
  
   SparseTable(const vector<T>& a, const F& f) : func(f) {

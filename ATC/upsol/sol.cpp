@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-#define ll long long
+// #define ll long long
 #define ln cout<<"\n"
 #define rep(i,s,n) for(ll i = (s);i<(n);++i)
 #define pc(x) __builtin_popcount(x)
@@ -32,60 +32,55 @@ template <class T, class... V>void _dbg(T t, V... v) {__dbg(t); if (sizeof...(v)
 #define dbg(x...)
 #endif
 
-namespace modop {
-
-    ll mod = 998244353;
-
-	ll add(ll a, ll b) {
-	  return (a + b) % mod;
-	}
-	ll sub(ll a, ll b) {
-	  return (((a - b) % mod) + mod) % mod;
-	}
-	ll mul(ll a, ll b) {
-	  return ((a % mod) * (b % mod)) % mod;
-	}
-	ll pow(ll base, ll exp) {
-	  ll res = 1;
-	  while (exp) {
-		if (exp % 2 == 1){
-			res = (res * base) % mod;
-		}
-		exp >>= 1;
-		base = (base * base) % mod;
-	  }
-	  return res;
-	}
-	ll inv(ll base) {
-	  return pow(base, mod - 2);
-	}
-	ll div(ll a, ll b) {
-	  return mul(a, inv(b));
-	}
-	
-	const ll FACTORIAL_SIZE = 1.1e6;
-	ll fact[FACTORIAL_SIZE], ifact[FACTORIAL_SIZE];
-	void gen_factorial(ll n) {
-		fact[0] = fact[1] = ifact[0] = ifact[1] = 1;
-		
-		for (ll i = 2; i <= n; i++) {
-			fact[i] = (i * fact[i - 1]) % mod;
-            //dbg(fact[i]);
-		}
-		ifact[n] = inv(fact[n]);
-		for (ll i = n - 1; i >= 2; i--) {
-			ifact[i] = ((i + 1) * ifact[i + 1]) % mod;
-		}
-	}
-	ll nck(ll n, ll k) {
-		ll den = (ifact[k] * ifact[n - k]) % mod;
-        //dbg(ifact[k],ifact[n - k]);
-		return (den * fact[n]) % mod;
-	}
-}
-
 void solve(){
-     
+	int n;
+    std :: cin >> n;
+    std :: vector<int> a(n),b(n);
+    for(int i = 0;i < n;++i)std :: cin >> a[i];
+    for(int i = 0;i < n;++i)std :: cin >> b[i];
+    // std :: swap(a,b);
+    // std :: vector<pi> v(n);
+    // for(int i = 0;i < n;++i)v[i] = {a[i], b[i]};
+    // sort(all(v));
+    // std :: vector<int> new_a(n),new_b(n);
+    // for(int i = 0;i < n;++i){
+    //     new_a[i] = v[i].first;
+    //     new_b[i] = v[i].second;
+    // }
+    // // int A[3] = {1,2,3};
+    // // std :: cout << std :: is_sorted(A,A+3) << std :: endl;
+    // if(!std :: is_sorted(all(new_a)) || !std :: is_sorted(all(new_b))){
+    //     std :: cout << "-1\n";
+    //     return;
+    // }
+    std :: vector<pi> ans;
+    for(int i = 0;i < n - 1;++i){
+        int n_id = std :: min_element(a.begin() + i + 1,a.end()) - a.begin();
+        assert(n_id < n);X
+        if(a[n_id] < a[i]){
+            ans.push_back({i,n_id});
+            std :: swap(a[n_id],a[i]);
+            std :: swap(b[n_id],b[i]);
+        }
+        else if(a[n_id] == a[i] && b[n_id] < b[i]){
+            ans.push_back({i,n_id});
+            std :: swap(a[n_id],a[i]);
+            std :: swap(b[n_id],b[i]);
+        }
+    }
+    for(int i = 0;i < n;++i){
+        for(int j = i + 1;j < n;++j){
+            if(a[i] <= a[j] && b[i] > b[j]){
+                std :: cout << -1 << '\n';
+                return;
+            }
+        }
+    }
+    // if(std :: is_sorted(all(a)) && std :: is_sorted(all(b))){
+        std :: cout << ans.size() << '\n';
+        for(auto x : ans)std :: cout << x.first + 1 << " " << x.second + 1 << '\n';
+    // }
+    // else std :: cout << -1 << '\n';
 }
 
 int main(){
@@ -93,7 +88,7 @@ int main(){
     std::cin.tie(NULL);
     std::cout.tie(NULL);  	
     int test=1;
-    // cin>>test;   
+    std :: cin>>test;   
     while(test--)
         solve();
     return 0;
